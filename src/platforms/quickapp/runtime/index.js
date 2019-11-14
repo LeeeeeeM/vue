@@ -164,8 +164,10 @@ Vue.prototype._connectLifecycle = function (options) {
 
   options.created = options.created || []
   options.created = Array.isArray(options.created) ? options.created : [options.created]
-  options.created.push(initExternalData)
   options.created.unshift(initHook)
+
+  options.beforeCreate = options.beforeCreate || []
+  options.beforeCreate.push(initExternalData)
 
   // // onDestroy 放到 Vue 的beforeDestroy钩子中执行
   // const pageDestroyHook = () => {
